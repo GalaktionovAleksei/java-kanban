@@ -36,8 +36,8 @@ public class Epic extends Task {
         } return newStatus;
     }
 
-    public ArrayList <SubTask> setListSubTasks(Epic epic){
-        ArrayList <SubTask> newListSubTasks = epic.listSubTasks;
+    public ArrayList <SubTask> getListSubTasks(){
+        ArrayList <SubTask> newListSubTasks = listSubTasks;
         return newListSubTasks;
     }
 

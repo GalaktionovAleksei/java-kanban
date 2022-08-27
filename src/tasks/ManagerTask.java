@@ -19,11 +19,12 @@ public class ManagerTask {
         epics.put(id, epic);
     }
 
-    public void createSubTask(int id, SubTask subTask){
+    public void createSubTask(int id, SubTask subTask, Epic epic){
         subTasks.put(id, subTask);
+        addSubTaskToEpic(epic, subTask);
     }
 
-    public void addSubTaskToEpic(Epic epic,SubTask subTask){
+    private void addSubTaskToEpic(Epic epic,SubTask subTask){
         epic.listSubTasks.add(subTask);
         epic.setStatus();
     }
@@ -48,8 +49,9 @@ public class ManagerTask {
         epics.remove(key);
     }
 
-    public void deleteSubTask(int key){
+    public void deleteSubTask(int key, Epic epic){
         subTasks.remove(key);
+        epic.listSubTasks.remove(key);
     }
 
     public Task getTask(int id){
@@ -82,7 +84,12 @@ public class ManagerTask {
     }
 
     public void updateSubTask(Epic epic, SubTask subTask,int subTaskID){
-        epic.listSubTasks.remove(subTask);
+        for (int i = 0; i < epic.listSubTasks.size(); i++){
+            SubTask subTaskXY = epic.listSubTasks.get(i);
+            if (subTaskXY.id == subTaskID){
+                epic.listSubTasks.remove(i);
+            }
+        }
         subTasks.put(subTaskID, subTask);
         addSubTaskToEpic(epic,subTask);
     }
@@ -110,6 +117,4 @@ public class ManagerTask {
     public int getSubTaskID(){
         return subTaskID +=1;
     }
-
-
 }

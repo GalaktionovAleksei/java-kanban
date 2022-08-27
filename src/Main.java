@@ -20,12 +20,10 @@ public class Main {
         managerTask.createEpic(epic1.getID(), epic1);
         SubTask subTask1 = new SubTask("Подзадача 1-2","Подзадача 1 для эпика 1",
                 managerTask.getSubTaskID(), "NEW", epic1.getID());
-        managerTask.createSubTask(subTask1.getID(), subTask1);
-        managerTask.addSubTaskToEpic(epic1, subTask1);
+        managerTask.createSubTask(subTask1.getID(), subTask1, epic1);
         SubTask subTask2 = new SubTask("Подзадача 2-1","Подзадача 2 для эпика 1",
                 managerTask.getSubTaskID(), "NEW", epic1.getID());
-        managerTask.createSubTask(subTask2.getID(), subTask2);
-        managerTask.addSubTaskToEpic(epic1, subTask2);
+        managerTask.createSubTask(subTask2.getID(), subTask2, epic1);
 
         // Создание эпика с 1 подзадачей
         Epic epic2 = new Epic("Эпик 2", "Эпик с одной подзадачей",
@@ -34,8 +32,7 @@ public class Main {
 
         SubTask subTask3 = new SubTask("Подзадача 1-2", "Подзадача 1 для эпика 2",
                 managerTask.getSubTaskID(), "IN_PROGRESS", epic2.getID());
-        managerTask.createSubTask(subTask3.getID(), subTask3);
-        managerTask.addSubTaskToEpic(epic2, subTask3);
+        managerTask.createSubTask(subTask3.getID(), subTask3, epic2);
 
         // Распечатайте списки эпиков, задач и подзадач, через System.out.println(..)
         System.out.println(managerTask.getAllEpics());
