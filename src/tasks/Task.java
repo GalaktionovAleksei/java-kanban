@@ -25,6 +25,10 @@ public class Task{
         return id;
     }
 
+    public void setID(int newID){
+        id = newID;
+    }
+
     @Override
     public String toString() {
         return "Task{" +

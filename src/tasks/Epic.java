@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Epic extends Task {
-    protected ArrayList<SubTask> listSubTasks = new ArrayList<>();
+    private ArrayList<SubTask> listSubTasks = new ArrayList<>();
     public Epic(String name, String description, int id, String status, ArrayList<SubTask> subTasks) {
         super(name, description, id, status);
         this.status = "NEW";
@@ -11,24 +11,21 @@ public class Epic extends Task {
 
     private String setStatusEpic(){
         String newStatus = null;
-        int newNum = 0;
-        int progressNum = 0;
-        int doneNum = 0;
+        int newSum = 0;
+        int doneSum = 0;
         if (listSubTasks.isEmpty()){
             newStatus = "NEW";
         } else {
             for (SubTask subTask : listSubTasks) {
                 if (Objects.equals(subTask.status, "NEW")) {
-                    newNum++;
-                } else if (Objects.equals(subTask.status, "IN_PROGRESS")) {
-                    progressNum++;
+                    newSum++;
                 } else if (Objects.equals(subTask.status, "DONE")) {
-                    doneNum++;
+                    doneSum++;
                 }
-                if (newNum == 0 && progressNum == 00) {
-                    newStatus = "DONE";
-                } else if (progressNum == 0 && doneNum == 0) {
+                if (newSum == listSubTasks.size()) {
                     newStatus = "NEW";
+                } else if (doneSum == listSubTasks.size()) {
+                    newStatus = "DONE";
                 } else {
                     newStatus = "IN_PROGRESS";
                 }
@@ -36,13 +33,28 @@ public class Epic extends Task {
         } return newStatus;
     }
 
-    public ArrayList <SubTask> getListSubTasks(){
-        ArrayList <SubTask> newListSubTasks = listSubTasks;
-        return newListSubTasks;
+    public void addSubTaskToEpic(SubTask subTask){
+        listSubTasks.add(subTask);
     }
 
-    protected String setStatus(){
-        return this.status = setStatusEpic();
+    public void deleteSubTaskFromEpic(SubTask subTask){
+        listSubTasks.remove(subTask);
+    }
+
+    public ArrayList<SubTask> getListSubTasks() {
+        return listSubTasks;
+    }
+    public ArrayList<SubTask>  setListSubTasks(ArrayList<SubTask> ListSubTasks){
+        this.listSubTasks = ListSubTasks;
+        return listSubTasks;
+    }
+
+    public void deleteAllSubTaskFromEpic(){
+        listSubTasks.clear();
+    }
+
+    public void setStatus(){
+        this.status = setStatusEpic();
     }
 
     @Override
@@ -56,4 +68,6 @@ public class Epic extends Task {
                 ", id=" + id +
                 '}';
     }
+
+
 }
