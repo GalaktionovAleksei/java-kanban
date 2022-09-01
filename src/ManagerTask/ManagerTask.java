@@ -1,11 +1,15 @@
 package ManagerTask;
 import tasks.*;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
 /* Привет!
-Вроде я всё поправил, кроме констант, немного не успел по теории до них добраться :)
-Единственное, мне кажется, я не совсем правильно тебя понял и сделал не совсем то что ты имел ввиду про методы-"апдейты"
+До констант уже дошёл, добавил)
+По удалению подзадач из мапы при удалении эпика, я так понимаю мне не хватает знаний про "некие" итераторы,
+    по этому сделал через два цикла.
+Остальные замечания - исправил! (надеюсь:)
 */
 
 public class ManagerTask {
@@ -51,7 +55,14 @@ public class ManagerTask {
     }
 
     public void deleteEpic(int id){
-        epics.get(id).deleteAllSubTaskFromEpic();
+        ArrayList<SubTask> subTaskForDelete = new ArrayList<>();
+        for (SubTask subTask: subTasks.values()){
+            if (subTask.getSubTaskEpicID() == id){
+                subTaskForDelete.add(subTask);
+            }
+        } for (int i = 0; i < subTaskForDelete.size(); i++){
+            subTasks.remove(subTaskForDelete.get(i).getID());
+        }
         epics.remove(id);
     }
 
@@ -75,27 +86,27 @@ public class ManagerTask {
     }
 
     public void updateTask(Task task){
-        if (tasks.get(task.getID()) != null){
+        if (tasks.containsKey(task.getID())){
             tasks.put(task.getID(), task);
         }
     }
 
     public void updateEpic(Epic epic){
-        epic.setListSubTasks(epics.get(epic.getID()).getListSubTasks());
-        if (epics.get(epic.getID()) != null){
+        if (epics.containsKey(epic.getID())){
+            epic.setListSubTasks(epics.get(epic.getID()).getListSubTasks());
             epics.put(epic.getID(), epic);
+            epic.setStatus();
         }
-        epic.setStatus();
     }
 
     public void updateSubTask(SubTask subTask){
-        int epicID = subTasks.get(subTask.getID()).getSubTaskEpicID();
-        if (subTasks.get(subTask.getID()) != null){
+        if (subTasks.containsKey(subTask.getID())){
+            int epicID = subTasks.get(subTask.getID()).getSubTaskEpicID();
             epics.get(epicID).deleteSubTaskFromEpic(subTasks.get(subTask.getID()));
             subTasks.put(subTask.getID(), subTask);
             epics.get(epicID).addSubTaskToEpic(subTasks.get(subTask.getID()));
+            epics.get(epicID).setStatus();
         }
-        epics.get(epicID).setStatus();
     }
 
     public void deleteAllTasks(){
@@ -116,7 +127,7 @@ public class ManagerTask {
     }
 
     public int getID(){
-        return ID +=1;
+        return ID++;
     }
 
 }

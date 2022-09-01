@@ -4,17 +4,17 @@ import java.util.Objects;
 
 public class Epic extends Task {
     private ArrayList<SubTask> listSubTasks = new ArrayList<>();
-    public Epic(String name, String description, int id, String status, ArrayList<SubTask> subTasks) {
+    public Epic(String name, String description, int id, Status status, ArrayList<SubTask> subTasks) {
         super(name, description, id, status);
-        this.status = "NEW";
+        this.status = Status.NEW;
     }
 
-    private String setStatusEpic(){
-        String newStatus = null;
+    private Status setStatusEpic(){
+        Status newStatus = null;
         int newSum = 0;
         int doneSum = 0;
         if (listSubTasks.isEmpty()){
-            newStatus = "NEW";
+            newStatus = Status.NEW;
         } else {
             for (SubTask subTask : listSubTasks) {
                 if (Objects.equals(subTask.status, "NEW")) {
@@ -23,11 +23,11 @@ public class Epic extends Task {
                     doneSum++;
                 }
                 if (newSum == listSubTasks.size()) {
-                    newStatus = "NEW";
+                    newStatus = Status.NEW;
                 } else if (doneSum == listSubTasks.size()) {
-                    newStatus = "DONE";
+                    newStatus = Status.DONE;
                 } else {
-                    newStatus = "IN_PROGRESS";
+                    newStatus = Status.IN_PROGRESS;
                 }
             }
         } return newStatus;

@@ -3,21 +3,21 @@ package tasks;
 public class Task{
     protected String name;
     protected String description;
-    protected String status;
+    protected Status status;
     protected int id;
 
-    public Task(String name, String description, int id, String status) {
+    public Task(String name, String description, int id, Status status) {
         this.name = name;
         this.description = description;
         this.status = status;
         this.id = id;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public String setStatus(String status) {
+    public Status setStatus(Status status) {
         return this.status = status;
     }
 
