@@ -17,9 +17,9 @@ public class Epic extends Task {
             newStatus = Status.NEW;
         } else {
             for (SubTask subTask : listSubTasks) {
-                if (Objects.equals(subTask.status, "NEW")) {
+                if (Objects.equals(subTask.status, Status.NEW)) {
                     newSum++;
-                } else if (Objects.equals(subTask.status, "DONE")) {
+                } else if (Objects.equals(subTask.status, Status.DONE)) {
                     doneSum++;
                 }
                 if (newSum == listSubTasks.size()) {

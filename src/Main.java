@@ -7,9 +7,9 @@ public class Main {
         ManagerTask managerTask = new ManagerTask();
 
         //Создание 2 задач
-        Task task1 = new Task("Задача 1","Описание задачи 1",0,Status.DONE);
+        Task task1 = new Task("Задача 1","Описание задачи 1",0,Status.IN_PROGRESS);
         managerTask.createTask(task1);
-        Task task2 = new Task("Задача 2","Описание задачи 2",0,Status.IN_PROGRESS);
+        Task task2 = new Task("Задача 2","Описание задачи 2",0,Status.NEW);
         managerTask.createTask(task2);
 
         // Создание эпика с 2 подзадачами
