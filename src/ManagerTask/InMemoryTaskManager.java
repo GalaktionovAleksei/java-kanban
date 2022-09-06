@@ -61,22 +61,27 @@ public class InMemoryTaskManager implements TaskManager{
         tasks.remove(id);
     }
 
-    @Override
-    public void deleteEpic(int id){
-        ArrayList<SubTask> subTaskForDelete = new ArrayList<>();
-        /*if (epics.containsKey(id)) {
-            ArrayList<SubTask> epicSubTasks = epics.get(id).getListSubTasks();
-            epicSubTasks.forEach(subTasks::remove);
-            epics.remove(id);
-        }*/
-        for (SubTask subTask: subTasks.values()){
-            if (subTask.getSubTaskEpicID() == id){
-                subTaskForDelete.add(subTask);
-            }
-        } for (int i = 0; i < subTaskForDelete.size(); i++){
-            subTasks.remove(subTaskForDelete.get(i).getID());
+    /*По этому методу, ты присылал такое замечание:
+    "Функционально ок, но можно было сделать проще:
+        if (epics.containsKey(id)) {
+        List<SubTask> epicSubTasks = epics.get(id).getListSubTasks();
+          epicSubTasks.forEach(subTasks::remove);
+          epics.remove(id)
         }
-        epics.remove(id);
+    Я к тому, что делать полный обход всех сабтасок, сравнивать id и складывать в отдельную коллекцию - лишнее."
+
+    У меня возникла сложность с вот этой строчкой - epicSubTasks.forEach(subTasks::remove) почему то не происходит
+    удаление по объекту из мапы subTasks, по этому реализовал следующим образом.
+     */
+    @Override
+    public void deleteEpic(int id) {
+        if (epics.containsKey(id)) {
+            ArrayList<SubTask> epicSubTasks = epics.get(id).getListSubTasks();
+            for (SubTask subTask : epicSubTasks) {
+                subTasks.remove(subTask.getID());
+            }
+            epics.remove(id);
+        }
     }
 
     @Override
