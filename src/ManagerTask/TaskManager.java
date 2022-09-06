@@ -43,6 +43,4 @@ public interface TaskManager {
 
     void deleteAllSubTasks();
 
-    int getID();
-
 }

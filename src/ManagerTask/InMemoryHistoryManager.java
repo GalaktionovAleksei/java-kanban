@@ -16,7 +16,6 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     @Override
     public List<Task> getHistory() {
-        List<Task> historyListClone = historyList;
-        return historyListClone;
+        return new LinkedList<>(historyList);
     }
 }
