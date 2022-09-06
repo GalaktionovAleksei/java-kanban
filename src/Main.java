@@ -2,10 +2,6 @@ import ManagerTask.Managers;
 import ManagerTask.TaskManager;
 import tasks.*;
 
-/* Антон, привет!
-У меня вопрос по методу deleteEpic в классе InMemoryTaskManager, правильно ли я реализовал с учётом твоих замечаний или
-нет. Сам вопрос более подробно описал перед методом
-*/
 public class Main {
 
     public static void main(String[] args) {

@@ -60,18 +60,6 @@ public class InMemoryTaskManager implements TaskManager{
         tasks.remove(id);
     }
 
-    /*По этому методу, ты присылал такое замечание:
-    "Функционально ок, но можно было сделать проще:
-        if (epics.containsKey(id)) {
-        List<SubTask> epicSubTasks = epics.get(id).getListSubTasks();
-          epicSubTasks.forEach(subTasks::remove);
-          epics.remove(id)
-        }
-    Я к тому, что делать полный обход всех сабтасок, сравнивать id и складывать в отдельную коллекцию - лишнее."
-
-    У меня возникла сложность с вот этой строчкой - epicSubTasks.forEach(subTasks::remove) почему то не происходит
-    удаление по объекту из мапы subTasks, по этому реализовал следующим образом.
-     */
     @Override
     public void deleteEpic(int id) {
         if (epics.containsKey(id)) {
@@ -93,19 +81,25 @@ public class InMemoryTaskManager implements TaskManager{
 
     @Override
     public Task getTask(int id){
-        historyManager.add(tasks.get(id));
+        if (tasks.get(id) != null) {
+            historyManager.add(tasks.get(id));
+        }
         return tasks.get(id);
     }
 
     @Override
     public Epic getEpic(int id){
-        historyManager.add(epics.get(id));
+        if (epics.get(id) != null) {
+            historyManager.add(epics.get(id));
+        }
         return epics.get(id);
     }
 
     @Override
     public SubTask getSubTask(int id){
-        historyManager.add(subTasks.get(id));
+        if (subTasks.get(id) != null) {
+            historyManager.add(subTasks.get(id));
+        }
         return subTasks.get(id);
     }
 
