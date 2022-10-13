@@ -41,6 +41,6 @@ public class Main {
         System.out.println(manager.getHistory());
         manager.getEpic(epic1.getID());
         System.out.println(manager.getHistory());
-
+        System.out.println("Привет");
     }
 }
