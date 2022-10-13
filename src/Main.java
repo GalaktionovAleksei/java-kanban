@@ -2,6 +2,7 @@ import ManagerTask.Managers;
 import ManagerTask.TaskManager;
 import tasks.*;
 
+
 public class Main {
 
     public static void main(String[] args) {
@@ -12,7 +13,6 @@ public class Main {
         manager.createTask(task1);
         Task task2 = new Task("Задача 2","Описание задачи 2",0,Status.NEW);
         manager.createTask(task2);
-
         // Создание эпика с 2 подзадачами
         Epic epic1 = new Epic("Эпик 1","Эпик с двумя подзадачами",
                 0, null, null);
