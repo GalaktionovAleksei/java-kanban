@@ -2,9 +2,8 @@ import ManagerTask.Managers;
 import ManagerTask.TaskManager;
 import tasks.*;
 
-//Антон, привет!
-//У меня такое чувство что в InMemoryHistoryManager, я создал "монстра"
-
+// Спасибо за развернутые комментарии!
+// Вроде смог со всем разобраться
 
 public class Main {
 
@@ -38,22 +37,36 @@ public class Main {
         manager.createEpic(epic2);
 
         //запросите созданные задачи несколько раз в разном порядке;
-//        System.out.println(manager.getTask(task1.getID()));
-//        System.out.println(manager.getEpic(epic2.getID()));
-//        System.out.println(manager.getTask(task2.getID()));
-//        System.out.println(manager.getTask(task1.getID()));
+//        manager.getTask(task1.getID());
+//        manager.getEpic(epic2.getID());
 //        System.out.println(manager.getHistory());
-//        //удалите задачу, которая есть в истории, и проверьте, что при печати она не будет выводиться;
+//        manager.getTask(task1.getID());
+//        manager.getTask(task1.getID());
+//        System.out.println(manager.getHistory());
+//        manager.getTask(task2.getID());
+//        manager.getTask(task1.getID());
+//        System.out.println(manager.getHistory());
+        //удалите задачу, которая есть в истории, и проверьте, что при печати она не будет выводиться;
 //        manager.deleteTask(task2.getID());
 //        System.out.println(manager.getHistory());
 
-//        удалите эпик с тремя подзадачами и убедитесь, что из истории удалился как сам эпик, так и все его подзадачи.
-        System.out.println(manager.getEpic(epic1.getID()));
-        System.out.println(manager.getSubTask(subTask1.getID()));
-        System.out.println(manager.getSubTask(subTask2.getID()));
-        System.out.println(manager.getSubTask(subTask3.getID()));
+        //удалите эпик с тремя подзадачами и убедитесь, что из истории удалился как сам эпик, так и все его подзадачи.
+//        manager.getEpic(epic1.getID());
+//        manager.getSubTask(subTask1.getID());
+//        manager.getSubTask(subTask2.getID());
+//        manager.getSubTask(subTask3.getID());
+//        System.out.println(manager.getHistory());
+//        manager.deleteEpic(epic1.getID());
+//        System.out.println(manager.getHistory());
+
+
+        manager.getTask(task1.getID());
+        manager.getTask(task2.getID());
+        manager.getEpic(epic1.getID());
+
         System.out.println(manager.getHistory());
-        manager.deleteEpic(epic1.getID());
+        manager.deleteTask(task2.getID());
         System.out.println(manager.getHistory());
+
     }
 }
