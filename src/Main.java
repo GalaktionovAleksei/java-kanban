@@ -2,11 +2,6 @@ import ManagerTask.Managers;
 import ManagerTask.TaskManager;
 import tasks.*;
 
-import java.util.LinkedList;
-
-//По поводу метода LinkLast, я тебе в Slack написал
-//Потестил для 0 элементов, 1, 2 и более элементов, всё корректно отрабатывает (вроде как :))
-
 public class Main {
 
     public static void main(String[] args) {
