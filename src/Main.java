@@ -2,6 +2,8 @@ import ManagerTask.Managers;
 import ManagerTask.TaskManager;
 import tasks.*;
 
+import java.util.LinkedList;
+
 //По поводу метода LinkLast, я тебе в Slack написал
 //Потестил для 0 элементов, 1, 2 и более элементов, всё корректно отрабатывает (вроде как :))
 
@@ -46,7 +48,7 @@ public class Main {
 //        manager.getTask(task2.getID());
 //        manager.getTask(task1.getID());
 //        System.out.println(manager.getHistory());
-//        //удалите задачу, которая есть в истории, и проверьте, что при печати она не будет выводиться;
+        //удалите задачу, которая есть в истории, и проверьте, что при печати она не будет выводиться;
 //        manager.deleteTask(task2.getID());
 //        System.out.println(manager.getHistory());
 
