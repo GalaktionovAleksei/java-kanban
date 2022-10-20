@@ -2,8 +2,8 @@ import ManagerTask.Managers;
 import ManagerTask.TaskManager;
 import tasks.*;
 
-// Спасибо за развернутые комментарии!
-// Вроде смог со всем разобраться
+//По поводу метода LinkLast, я тебе в Slack написал
+//Потестил для 0 элементов, 1, 2 и более элементов, всё корректно отрабатывает (вроде как :))
 
 public class Main {
 
@@ -12,19 +12,19 @@ public class Main {
 
         //После написания менеджера истории проверьте его работу:
         //создайте две задачи
-        Task task1 = new Task("Задача 1","Описание задачи 1",0,Status.IN_PROGRESS);
+        Task task1 = new Task("Задача 1", "Описание задачи 1", 0, Status.IN_PROGRESS);
         manager.createTask(task1);
-        Task task2 = new Task("Задача 2","Описание задачи 2",0,Status.NEW);
+        Task task2 = new Task("Задача 2", "Описание задачи 2", 0, Status.NEW);
         manager.createTask(task2);
 
         // эпик с тремя подзадачами
-        Epic epic1 = new Epic("Эпик 1","Эпик с двумя подзадачами",
+        Epic epic1 = new Epic("Эпик 1", "Эпик с двумя подзадачами",
                 0, null, null);
         manager.createEpic(epic1);
-        SubTask subTask1 = new SubTask("Подзадача 1-2","Подзадача 1 для эпика 1",
+        SubTask subTask1 = new SubTask("Подзадача 1-2", "Подзадача 1 для эпика 1",
                 0, Status.NEW, epic1.getID());
         manager.createSubTask(subTask1, epic1);
-        SubTask subTask2 = new SubTask("Подзадача 2-1","Подзадача 2 для эпика 1",
+        SubTask subTask2 = new SubTask("Подзадача 2-1", "Подзадача 2 для эпика 1",
                 0, Status.DONE, epic1.getID());
         manager.createSubTask(subTask2, epic1);
         SubTask subTask3 = new SubTask("Подзадача 3-1", "Подзадача 3 для эпика 1",
@@ -46,7 +46,7 @@ public class Main {
 //        manager.getTask(task2.getID());
 //        manager.getTask(task1.getID());
 //        System.out.println(manager.getHistory());
-        //удалите задачу, которая есть в истории, и проверьте, что при печати она не будет выводиться;
+//        //удалите задачу, которая есть в истории, и проверьте, что при печати она не будет выводиться;
 //        manager.deleteTask(task2.getID());
 //        System.out.println(manager.getHistory());
 
@@ -58,15 +58,5 @@ public class Main {
 //        System.out.println(manager.getHistory());
 //        manager.deleteEpic(epic1.getID());
 //        System.out.println(manager.getHistory());
-
-
-        manager.getTask(task1.getID());
-        manager.getTask(task2.getID());
-        manager.getEpic(epic1.getID());
-
-        System.out.println(manager.getHistory());
-        manager.deleteTask(task2.getID());
-        System.out.println(manager.getHistory());
-
     }
 }

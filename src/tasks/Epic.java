@@ -39,6 +39,7 @@ public class Epic extends Task {
 
     public void deleteSubTaskFromEpic(SubTask subTask){
         listSubTasks.remove(subTask);
+        this.status = setStatusEpic();
     }
 
     public ArrayList<SubTask> getListSubTasks() {

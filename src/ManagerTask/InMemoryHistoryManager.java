@@ -5,8 +5,8 @@ import java.util.*;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
-    private Map<Integer, Node> tasksHistory = new HashMap<>();
-    private CustomLinkedList nodeList = new CustomLinkedList();
+    private final Map<Integer, Node> tasksHistory = new HashMap<>();
+    private final CustomLinkedList nodeList = new CustomLinkedList();
 
     @Override
     public void remove(int id){
@@ -31,12 +31,11 @@ public class InMemoryHistoryManager implements HistoryManager {
         return nodeList.getTasks();
     }
 
-    public class CustomLinkedList{
-        private Node head;
-        private Node tail;
+    private static class CustomLinkedList{
+        public Node head;
+        public Node tail;
 
-
-        private List getTasks(){
+        public List getTasks(){
             ArrayList<Task> tasksList = new ArrayList<>();
             Node nodeFromList = head;
             while (nodeFromList != null){
@@ -46,20 +45,29 @@ public class InMemoryHistoryManager implements HistoryManager {
             return tasksList;
         }
 
-        private void removeNode(Node node){
+        public void removeNode(Node node){
                 if (head == node){
-                    head = head.next;
-                    head.prev = null;
+                    if (head.next == null){
+                        head = null;
+                    } else {
+                        head = head.next;
+                        head.prev = null;
+                    }
                 } else if (tail == node) {
-                    tail = tail.prev;
-                    tail.next = null;
+                    if (tail.prev == head){
+                        tail = null;
+                        head.next = null;
+                    } else {
+                        tail = tail.prev;
+                        tail.next = null;
+                    }
                 } else {
                     node.prev.next = node.next;
                     node.next.prev = node.prev;
                 }
         }
 
-        private Node linkLast(Task task) {
+        public Node linkLast(Task task) {
             if (head == null){
                 head = new Node(null, task, null);
                 return head;
