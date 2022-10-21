@@ -151,8 +151,8 @@ public class InMemoryTaskManager implements TaskManager{
         for (Integer id : epics.keySet()){
             historyManager.remove(id);
         }
-        epics.clear();
         deleteAllSubTasks();
+        epics.clear();
     }
 
     @Override
@@ -160,6 +160,11 @@ public class InMemoryTaskManager implements TaskManager{
         for (Integer id : subTasks.keySet()){
             historyManager.remove(id);
             epics.get(subTasks.get(id).getSubTaskEpicID()).deleteSubTaskFromEpic(subTasks.get(id));
+            //сначала сделал, а потом подумал зачем, если можно поменять порядок действий в методе deleteAllEpics
+            //но может я опять упустил какой-то сценарий, в котором правильнее будет реализовать так
+//            if (epics.containsKey(subTasks.get(id).getSubTaskEpicID())) {
+//                epics.get(subTasks.get(id).getSubTaskEpicID()).deleteSubTaskFromEpic(subTasks.get(id));
+//            }
         }
         subTasks.clear();
     }
