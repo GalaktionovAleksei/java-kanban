@@ -1,3 +1,4 @@
+import ManagerTask.FileBackedTasksManager;
 import ManagerTask.Managers;
 import ManagerTask.TaskManager;
 import tasks.*;
@@ -34,9 +35,9 @@ public class Main {
         manager.createEpic(epic2);
 
         //запросите созданные задачи несколько раз в разном порядке;
-//        manager.getTask(task1.getID());
-//        manager.getEpic(epic2.getID());
-//        System.out.println(manager.getHistory());
+        manager.getTask(task1.getID());
+        manager.getEpic(epic2.getID());
+        System.out.println(manager.getHistory());
 //        manager.getTask(task1.getID());
 //        manager.getTask(task1.getID());
 //        System.out.println(manager.getHistory());
